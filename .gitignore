@@ -2,3 +2,4 @@
 !.streamlit/config.toml
 .direnv
 .snowflake
+output
