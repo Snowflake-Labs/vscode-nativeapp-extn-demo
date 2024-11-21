@@ -16,9 +16,11 @@ USE APPLICATION PACKAGE <% ctx.entities.pkg.identifier %>;
 
 GRANT REFERENCE_USAGE ON DATABASE PENGUINS_ML_APP TO SHARE IN APPLICATION PACKAGE <% ctx.entities.pkg.identifier %>;
 
-CREATE OR REPLACE VIEW PENGUINS_V
+CREATE SCHEMA IF NOT EXISTS <% ctx.env.PENGUINS_VIEWS_SCHEMA %>;
+
+CREATE OR REPLACE VIEW <% ctx.env.PENGUINS_VIEWS_SCHEMA %>.PENGUINS_V
 AS
 (SELECT * FROM PENGUINS_ML_APP.DATA.PENGUINS);
 
-GRANT USAGE ON SCHEMA  <% ctx.entities.pkg.identifier %>.PUBLIC  TO SHARE IN APPLICATION PACKAGE <% ctx.entities.pkg.identifier %>;
-GRANT SELECT ON VIEW <% ctx.entities.pkg.identifier %>.PUBLIC.PENGUINS_V TO SHARE IN APPLICATION PACKAGE <% ctx.entities.pkg.identifier %>;
+GRANT USAGE ON SCHEMA  <% ctx.entities.pkg.identifier %>.<% ctx.env.PENGUINS_VIEWS_SCHEMA %>  TO SHARE IN APPLICATION PACKAGE <% ctx.entities.pkg.identifier %>;
+GRANT SELECT ON VIEW <% ctx.entities.pkg.identifier %>.<% ctx.env.PENGUINS_VIEWS_SCHEMA %>.PENGUINS_V TO SHARE IN APPLICATION PACKAGE <% ctx.entities.pkg.identifier %>;

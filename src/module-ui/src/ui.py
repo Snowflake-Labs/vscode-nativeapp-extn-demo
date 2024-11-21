@@ -14,7 +14,7 @@ def get_active_session() -> Session:
     return conn.session()
 
 
-TABLE_NAME = "<% [ctx.entities.pkg.identifier,'PUBLIC','PENGUINS_V'] | join('.') %>"
+TABLE_NAME = "<% [ctx.entities.pkg.identifier,ctx.env.PENGUINS_VIEWS_SCHEMA,'PENGUINS_V'] | join('.') %>"
 session = get_active_session()
 
 st.title("🤖 Machine Learning App")
